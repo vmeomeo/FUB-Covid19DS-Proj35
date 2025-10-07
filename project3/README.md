@@ -20,26 +20,7 @@ It is designed to run on a laptop or HPC with conda/mamba.
 -Clean, interpretable outputs (TSV + PNG).
 -Reproducible via conda envs pinned in envs/.
 
-# Repository layout
-project3/
-├── data/
-│   ├── mut_profiles                 # GISAID mutation profiles
-│   └── ref/NC_045512.2.fasta        # auto-downloaded by rule
-│
-├── workflow/
-│   ├── envs/
-│   │   ├── base.yaml
-│   │   └── minimap2.yaml
-│   ├── rules/
-│   │   ├── sth1.smk
-│   │   └── sth2.smk
-│   ├── scripts/
-│   │   ├── gisaid_download.R
-│   │   ├── parse_minimap2_cs.py
-│   │   └── pca_kmeans_and_risk.py
-│   └── Snakefile
-│
-└── out/                             # results land here
+# Repository layout                        # results land here
 
 project3/
 ├─ Snakefile
@@ -60,17 +41,17 @@ project3/
 
 │  ├─ rules/
 
-│  │  ├─ get_reference.smk   # fetch NC_045512.2 if missing
+│   ├─ get_reference.smk   # fetch NC_045512.2 if missing
 
-│  │  ├─ io.smk              # sanity checks, paths
+│   ├─ io.smk              # sanity checks, paths
 
-│  │  ├─ align_nextalign.smk # nextclade/nextalign alignment (default)
+│   ├─ align_nextalign.smk # nextclade/nextalign alignment (default)
 
-│  │  ├─ align.smk           # MAFFT (chunked) alternative
+│   ├─ align.smk           # MAFFT (chunked) alternative
 
-│  │  ├─ analyze.smk         # run analyzers (TSVs, PCA/kmeans)
+│   ├─ analyze.smk         # run analyzers (TSVs, PCA/kmeans)
 
-│  │  └─ bloom.smk           # optional: Bloom escape integration
+│   └─ bloom.smk           # optional: Bloom escape integration
 
 │  └─ envs/
 │     ├─ base.yaml           # python: pandas, biopython, sklearn, matplotlib, tqdm
