@@ -30,24 +30,40 @@ project3/
 ├─ guide_proj3.MD
 
 ├─ config/
+
 │  └─ config.yaml
-├─ data/                     # place your input FASTA(s) here
-├─ out/                      # results go here (can change in config)
+
+├─ data/  # place your input FASTA(s) here
+
+├─ out/   # results go here (can change in config)
+
 ├─ workflow/
+
 │  ├─ rules/
+
 │  │  ├─ get_reference.smk   # fetch NC_045512.2 if missing
+
 │  │  ├─ io.smk              # sanity checks, paths
+
 │  │  ├─ align_nextalign.smk # nextclade/nextalign alignment (default)
+
 │  │  ├─ align.smk           # MAFFT (chunked) alternative
+
 │  │  ├─ analyze.smk         # run analyzers (TSVs, PCA/kmeans)
+
 │  │  └─ bloom.smk           # optional: Bloom escape integration
+
 │  └─ envs/
 │     ├─ base.yaml           # python: pandas, biopython, sklearn, matplotlib, tqdm
+
 │     ├─ nextclade.yaml      # nextclade / nextalign CLI
+
 │     └─ mafft.yaml          # mafft, seqkit
 └─ scripts/
    ├─ analyze_sarscov2.py    # differences, stats, mutation matrix, PCA/kmeans, Spike AAs
+   
    ├─ visualize_sarscov2.py  # quick PNG figures
+   
    └─ compute_bloom_risk.py  # (optional) join Bloom escape map
 
 
