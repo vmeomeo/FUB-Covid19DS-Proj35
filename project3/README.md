@@ -24,8 +24,11 @@ It is designed to run on a laptop or HPC with conda/mamba.
 
 project3/
 ├─ Snakefile
+
 ├─ README.md
+
 ├─ guide_proj3.MD
+
 ├─ config/
 │  └─ config.yaml
 ├─ data/                     # place your input FASTA(s) here
