@@ -1,0 +1,14 @@
+# INPUTS
+dataset_fasta: "data/risk-assessment-sequences.fasta"   # your OSF FASTA (consensus genomes)
+reference_fasta: "data/NC_045512.2.fasta"               # Wuhan reference (auto-downloaded)
+aligner: "nextclade"   # options: nextclade | mafft
+nextclade_dataset_dir: "data/nextclade"                 # where to store the dataset
+
+# OUTPUTS
+workdir: "work"       # intermediate alignment + nextclade outputs
+outdir: "out"         # tables from analysis
+figdir: "figures"     # PNG figures
+
+# ANALYSIS PARAMS
+kmeans_k: 3
+
