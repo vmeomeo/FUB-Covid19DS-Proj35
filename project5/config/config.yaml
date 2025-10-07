@@ -1,0 +1,25 @@
+project_name : Project 3 + 5 - SARS-CoV-2 Variant Analysis
+author: "Hang Mai Anh Vo, Kompal Fayyaz"
+date: 2025.10.01
+
+output_dir_path: "out"
+data_dir_path: "data"
+mutation_profiles_path: "data/mut_profiles"
+reference_genome_path: "data/reference/MN908947.3.fasta"
+metadata_path: "data/metadata/metadata.csv"
+lineage_report_path: "data/lineage_reports/lineage_report.csv"
+results_dir_path: "results"
+figures_dir_path: "figures"
+tables_dir_path: "tables"
+scripts_dir_path: "workflow/scripts"
+logs_dir_path: "logs"
+reports_dir_path: "reports"
+notebooks_dir_path: "workflow/notebooks"
+
+# List of lineages to analyze
+lineages:
+  - JN.1
+  - JN.2
+  - JN.3
+  - KP.3
+  - XBB.1.5

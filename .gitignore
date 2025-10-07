@@ -1,0 +1,8 @@
+.R_outbreak-info-token
+.snakemake
+.vscode
+__pycache__
+.Rhistory
+.Rproj.user
+.ipynb_checkpoints
+logs/

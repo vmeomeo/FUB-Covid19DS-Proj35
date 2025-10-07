@@ -1,0 +1,11 @@
+# configfile : "./config/config.yaml"
+configfile: "config/config.yaml"
+
+lineages = config["lineages"]
+
+# The final targets — one text file per lineage
+rule all:
+    input:
+        expand("data/mut_profiles/{lineage}.txt", lineage=[l.replace('.', '_') for l in lineages])
+
+include: "rules/download.smk"
