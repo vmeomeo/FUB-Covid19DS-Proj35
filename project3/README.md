@@ -97,6 +97,19 @@ results/stats_with_bloom.tsv — (optional) adds simple Bloom escape burden
 figures/*.png — histograms, PCA scatter, per-site SNP frequency plots
 #
 
+Quick start
+
+Edit config.yaml (example below).
+
+Run:
+
+snakemake -j 8 --use-conda
+
+Force the default all targets
+
+snakemake -j 8 all --use-conda
+
+
 
 # Reproducibility
 
