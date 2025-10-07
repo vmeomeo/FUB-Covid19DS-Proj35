@@ -20,4 +20,6 @@ devtools::install_github("outbreak-info/R-outbreak-info")
 ```
 
 ## **Python**
-we also use Python to run the analysis. For the environment setup, we use the envs/workshop environment which was create in the first hand-on tutorial in class. (Link: [here](https://github.com/rki-mf1/2025-SC2-Data-Science/blob/main/day-sc2-seq-and-assembly/hands-on.md))
+we also use Python and Snakemake to run the analysis. For the environment setup, we use the envs/workshop environment which was create in the first hand-on tutorial in class. (Link: [here](https://github.com/rki-mf1/2025-SC2-Data-Science/blob/main/day-sc2-seq-and-assembly/hands-on.md))
+
+
