@@ -21,6 +21,25 @@ It is designed to run on a laptop or HPC with conda/mamba.
 -Reproducible via conda envs pinned in envs/.
 
 # Repository layout
+project3/
+├── data/
+│   ├── mut_profiles                 # GISAID mutation profiles
+│   └── ref/NC_045512.2.fasta        # auto-downloaded by rule
+│
+├── workflow/
+│   ├── envs/
+│   │   ├── base.yaml
+│   │   └── minimap2.yaml
+│   ├── rules/
+│   │   ├── sth1.smk
+│   │   └── sth2.smk
+│   ├── scripts/
+│   │   ├── gisaid_download.R
+│   │   ├── parse_minimap2_cs.py
+│   │   └── pca_kmeans_and_risk.py
+│   └── Snakefile
+│
+└── out/                             # results land here
 
 project3/
 ├─ Snakefile
