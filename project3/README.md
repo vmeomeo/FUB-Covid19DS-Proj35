@@ -105,8 +105,8 @@ Run:
 
 
 Force the default all targets
-`
-``
+
+```
 snakemake -j 8 all --use-conda
 ```
 
