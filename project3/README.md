@@ -103,7 +103,7 @@ Edit config.yaml (example below).
 
 Run:
 
-snakemake -j 8 --use-conda
+
 
 Force the default all targets
 
