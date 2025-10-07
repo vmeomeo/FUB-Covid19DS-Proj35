@@ -20,8 +20,8 @@ It is designed to run on a laptop or HPC with conda/mamba.
 -Clean, interpretable outputs (TSV + PNG).
 -Reproducible via conda envs pinned in envs/.
 
-# Repository layout                        # results land here
-
+# Repository layout                        
+```
 project3/
 ├─ Snakefile
 
@@ -66,6 +66,7 @@ project3/
    
    └─ compute_bloom_risk.py  # (optional) join Bloom escape map
 
+```
 
 # Inputs
 
