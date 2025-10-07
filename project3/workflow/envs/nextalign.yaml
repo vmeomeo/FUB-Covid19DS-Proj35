@@ -1,0 +1,19 @@
+name: project3-nextalign
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python>=3.10
+  - snakemake
+  - nextalign      # <- the aligner
+  - curl
+  - biopython
+  - pandas
+  - numpy
+  - scipy
+  - scikit-learn
+  - tqdm
+  - matplotlib
+  - requests       # for Bloom step
+
+
