@@ -1,5 +1,6 @@
 # configfile : "./config/config.yaml"
 configfile: "config/config.yaml"
+report: "report/workflow.rst"
 
 lineages = config["lineages"]
 
