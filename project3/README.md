@@ -22,23 +22,33 @@ It is designed to run on a laptop or HPC with conda/mamba.
 
 # Repository layout
 
-├── Snakefile
-├── config.yaml
-├── envs/      # python: pandas, biopython, sklearn, matplotlib, etc.
-│   ├── nextalign.yaml / nextalign CLI
-├── scripts/
-│   ├── analyze_sarscov2.py      # difference calling, stats, PCA/kmeans, Spike AAs
-│   ├── visualize_sarscov2.py 
-│   ├── compute_bloom_risk.py
-├── rules/
-│   ├── visualise.smk     # download, sanity checks
-│   ├── align_nextalign.smk # nextclade/nextalign or mafft (chunked)
-│   ├── analyze.smk         # run Python analyzers
-│   ├── bloom.smk
-│   ├── get_reference.smk
-└── README.md  (this file)
+project3/
+├─ Snakefile
+├─ README.md
+├─ guide_proj3.MD
+├─ config/
+│  └─ config.yaml
+├─ data/                     # place your input FASTA(s) here
+├─ out/                      # results go here (can change in config)
+├─ workflow/
+│  ├─ rules/
+│  │  ├─ get_reference.smk   # fetch NC_045512.2 if missing
+│  │  ├─ io.smk              # sanity checks, paths
+│  │  ├─ align_nextalign.smk # nextclade/nextalign alignment (default)
+│  │  ├─ align.smk           # MAFFT (chunked) alternative
+│  │  ├─ analyze.smk         # run analyzers (TSVs, PCA/kmeans)
+│  │  └─ bloom.smk           # optional: Bloom escape integration
+│  └─ envs/
+│     ├─ base.yaml           # python: pandas, biopython, sklearn, matplotlib, tqdm
+│     ├─ nextclade.yaml      # nextclade / nextalign CLI
+│     └─ mafft.yaml          # mafft, seqkit
+└─ scripts/
+   ├─ analyze_sarscov2.py    # differences, stats, mutation matrix, PCA/kmeans, Spike AAs
+   ├─ visualize_sarscov2.py  # quick PNG figures
+   └─ compute_bloom_risk.py  # (optional) join Bloom escape map
 
-#Inputs
+
+# Inputs
 
 Consensus genomes (FASTA): path defined in config.yaml (input_fasta), e.g. data/risk-assessment-sequences.fasta
 
@@ -50,13 +60,21 @@ Reference (Wuhan-Hu-1): fetched automatically (NC_045512.2) or provide local pat
 All results land under results/:
 
 results/aligned.fasta — aligned genomes to reference length
+
 results/insertions.tsv — (nextclade/nextalign) insertions summary (if available)
+
 results/stats_per_sequence.tsv — Ns, SNPs, INDELs (+ Spike-only) per genome
+
 results/mutations_long.tsv — long table of all diffs vs reference
+
 results/mut_matrix_sparse.npz + mut_matrix_sites.tsv + mut_matrix_samples.tsv
+
 results/pca_kmeans.tsv — PCA components + cluster labels
+
 results/spike_aa_mutations.tsv — AA changes in Spike (e.g., E484K)
+
 results/stats_with_bloom.tsv — (optional) adds simple Bloom escape burden
+
 figures/*.png — histograms, PCA scatter, per-site SNP frequency plots
 #
 
