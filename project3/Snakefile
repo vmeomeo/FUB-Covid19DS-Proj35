@@ -1,0 +1,26 @@
+configfile: "config.yaml"
+
+include: "rules/get_reference.smk"
+include: "rules/align_nextalign.smk"
+include: "rules/analyze.smk"
+include: "rules/visualize.smk"
+include: "rules/bloom.smk"     # 
+
+REF = config["reference_fasta"]
+WORK = config["workdir"]
+OUT  = config["outdir"]
+FIG  = config["figdir"]
+
+rule all:
+    input:
+        REF,
+        f"{WORK}/aligned.fasta",
+        f"{OUT}/stats_per_sequence.tsv",
+        f"{OUT}/mutations_long.tsv",
+        f"{OUT}/pca_kmeans.tsv",
+        f"{OUT}/spike_aa_mutations.tsv",
+        f"{OUT}/stats_with_bloom.tsv",   # drop this if you didn’t add bloom.smk
+        f"{FIG}/hist_mutation_load.png",
+        f"{FIG}/pca_clusters.png"
+
+
