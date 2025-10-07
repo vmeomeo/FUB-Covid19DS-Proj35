@@ -47,8 +47,6 @@ project3/
 
 │   ├─ align_nextalign.smk # nextclade/nextalign alignment (default)
 
-│   ├─ align.smk           # MAFFT (chunked) alternative
-
 │   ├─ analyze.smk         # run analyzers (TSVs, PCA/kmeans)
 
 │   └─ bloom.smk           # optional: Bloom escape integration
@@ -107,10 +105,10 @@ Run:
 
 
 Force the default all targets
-
+`
+``
 snakemake -j 8 all --use-conda
-
-
+```
 
 # Reproducibility
 
