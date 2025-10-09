@@ -10,5 +10,10 @@ outdir: "out"         # tables from analysis
 figdir: "figures"     # PNG figures
 
 # ANALYSIS PARAMS
-kmeans_k: 3
+# --- PCA / k-means options ---
+pca:
+  k: "auto"     # or an integer like 3
+  kmin: 2
+  kmax: 10
+
 
