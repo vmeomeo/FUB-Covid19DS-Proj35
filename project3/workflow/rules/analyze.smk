@@ -3,28 +3,42 @@ WORK  = config["workdir"]
 OUT   = config["outdir"]
 K     = int(config["kmeans_k"])
 
-rule analyze:
+rule analyze_genomes:
     input:
-        aligned = f"{WORK}/aligned.fasta",
-        ref     = REF
+        aln = "work/aligned.fasta",                  # from nextalign/nextclade
+        ref = "data/NC_045512.2.fasta"              # Wuhan reference
     output:
-        stats   = f"{OUT}/stats_per_sequence.tsv",
-        muts    = f"{OUT}/mutations_long.tsv",
-        pca     = f"{OUT}/pca_kmeans.tsv",
-        spikeaa = f"{OUT}/spike_aa_mutations.tsv",
-        matrix  = f"{OUT}/mut_matrix_sparse.npz"
+        stats = "out/stats_per_sequence.tsv",
+        muts  = "out/mutations_long.tsv",
+        mat   = "out/mut_matrix_sparse.npz",
+        sites = "out/mut_matrix_sites.tsv",
+        samp  = "out/mut_matrix_samples.tsv",
+        pca   = "out/pca_kmeans.tsv",
+        spike = "out/spike_aa_mutations.tsv",
+        # optional (present only if k == "auto"):
+        ksel  = temp("out/k_selection.tsv")
     params:
-        outdir = OUT,
-        k = K
-    conda: "../envs/nextalign.yaml"
+        outdir = "out",
+        k      = lambda w, c, p: str(config["pca"]["k"]),
+        kmin   = lambda w, c, p: int(config["pca"]["kmin"]),
+        kmax   = lambda w, c, p: int(config["pca"]["kmax"])
+    conda:
+        "envs/analyze.yml"   # scikit-learn, biopython, numpy, pandas, scipy
+    threads: 2
     shell:
         r"""
-        mkdir -p {params.outdir}
         python scripts/analyze_sarscov2.py \
-          --aln {input.aligned} \
-          --ref {input.ref} \
-          --out {params.outdir} \
-          --k {params.k}
-        test -s {output.stats} || (echo 'Analysis failed' >&2; exit 1)
+            --aln {input.aln} \
+            --ref {input.ref} \
+            --out {params.outdir} \
+            --k {params.k} \
+            --kmin {params.kmin} \
+            --kmax {params.kmax}
+
+        # touch k_selection.tsv only if not created (e.g., fixed k)
+        if [ ! -f {params.outdir}/k_selection.tsv ]; then
+            : > {params.outdir}/k_selection.tsv
+        fi
         """
+
 
