@@ -56,7 +56,7 @@ project3/
 
 │     ├─ nextclade.yaml      # nextclade / nextalign CLI
 
-│     └─ mafft.yaml          # mafft, seqkit
+│  
 └─ scripts/
    ├─ analyze_sarscov2.py    # differences, stats, mutation matrix, PCA/kmeans, Spike AAs
    
