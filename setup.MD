@@ -22,4 +22,12 @@ devtools::install_github("outbreak-info/R-outbreak-info")
 ## **Python**
 we also use Python and Snakemake to run the analysis. For the environment setup, we use the envs/workshop environment which was create in the first hand-on tutorial in class. (Link: [here](https://github.com/rki-mf1/2025-SC2-Data-Science/blob/main/day-sc2-seq-and-assembly/hands-on.md))
 
+For package management, we use `mamba`.
 
+To run the code (pipeline + notebook) provided here, you can install mamba environment from `environment_clean.yml` as follows:
+
+```
+mkdir envs
+mamba create -y -p envs/workshop -f environment_clean.yml
+mamba activate envs/workshop
+```
