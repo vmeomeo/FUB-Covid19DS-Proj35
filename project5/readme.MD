@@ -27,16 +27,13 @@ project3/
 │   └── input/test_Germany           # Germany genomic surveillance data (provided)
 │
 ├── workflow/
-│   ├── envs/
-│   │   ├── base.yaml
-│   │   └── minimap2.yaml
+│   ├── notebook/notebook.ipynb
 │   ├── rules/
-│   │   ├── sth1.smk
-│   │   └── sth2.smk
+│   │   └── download.smk
 │   ├── scripts/
-│   │   ├── gisaid_download.R
-│   │   ├── parse_minimap2_cs.py
-│   │   └── pca_kmeans_and_risk.py
+│   │   ├── gisaid_download.R        # Modified from https://github.com/AlexiaNomena/SC2_VASIL
+│   │   ├── Fitness_SC2.py           # From https://github.com/AlexiaNomena/SC2_VASIL
+│   │   └── Compute_FR_SC2.py        # From https://github.com/AlexiaNomena/SC2_VASIL
 │   └── Snakefile
 │
 ├── logs/                            # snakemake log files
