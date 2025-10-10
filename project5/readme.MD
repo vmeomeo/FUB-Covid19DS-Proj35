@@ -1,4 +1,4 @@
-## **Project 5: Cross-Immunization**
+# **Project 5: Cross-Immunization**
 
 - Get a GISAID user account: [GISAID] https://gisaid.org/register/ This will take a few days! → Done
 - Write a small R script to download mutation profiles from outbreak.info API for the following SARS-CoV-2 variants using your gisaid account:
@@ -17,7 +17,7 @@
 - Analyze results.
 - Prepare a talk to present the results & analysis.
 
-### Directory map
+## Directory map
 ```
 project3/
 ├── data/
@@ -47,7 +47,7 @@ project3/
 ```
 You can `mkdir <directory_name>` to create the mentioned directory if you haven't had it.
 
-### How to use this repo?
+## How to use this repo?
 To download the data, make sure your current working directory is `FUB-Covid19DS-Proj35/project5`.
 
 How to check that? See the path in the terminal, or type `pwd` command. The result should be `{something}/FUB-Covid19DS-Proj35/project5`
@@ -56,3 +56,6 @@ Make sure you activate the mamba environment before running (`mamba activate env
 Then you run `snakemake --cores 4` to download mutation profiles. You can edit the list of lineages at the `config/config.yaml`
 
 After that, you can run the jupyter notebook `workflow/notebook/notebook.ipynb` to analyse the data and create plots.
+
+# Citation
+Raharinirina, N. A., Gubela, N., Börnigen, D., Smith, M. R., Oh, D. Y., Budt, M., ... & von Kleist, M. (2025). SARS-CoV-2 evolution on a dynamic immune landscape. Nature, 639(8053), 196-204.
