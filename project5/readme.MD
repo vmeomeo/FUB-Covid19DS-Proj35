@@ -57,5 +57,5 @@ Then you run `snakemake --cores 4` to download mutation profiles. You can edit t
 
 After that, you can run the jupyter notebook `workflow/notebook/notebook.ipynb` to analyse the data and create plots.
 
-# Citation
-Raharinirina, N. A., Gubela, N., Börnigen, D., Smith, M. R., Oh, D. Y., Budt, M., ... & von Kleist, M. (2025). SARS-CoV-2 evolution on a dynamic immune landscape. Nature, 639(8053), 196-204.
+## Citation
+Raharinirina, N.A., Gubela, N., Börnigen, D. et al. SARS-CoV-2 evolution on a dynamic immune landscape. Nature 639, 196–204 (2025). https://doi.org/10.1038/s41586-024-08477-8
