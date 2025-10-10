@@ -1,29 +1,30 @@
+# Snakefile or rules/analyze.smk
+
 REF   = config["reference_fasta"]
 WORK  = config["workdir"]
 OUT   = config["outdir"]
-K     = int(config["kmeans_k"])
 
 rule analyze_genomes:
     input:
-        aln = "work/aligned.fasta",                  # from nextalign/nextclade
-        ref = "data/NC_045512.2.fasta"              # Wuhan reference
+        aln = f"{WORK}/aligned.fasta",        # nextalign output
+        ref = REF                             # Wuhan reference
     output:
-        stats = "out/stats_per_sequence.tsv",
-        muts  = "out/mutations_long.tsv",
-        mat   = "out/mut_matrix_sparse.npz",
-        sites = "out/mut_matrix_sites.tsv",
-        samp  = "out/mut_matrix_samples.tsv",
-        pca   = "out/pca_kmeans.tsv",
-        spike = "out/spike_aa_mutations.tsv",
-        # optional (present only if k == "auto"):
-        ksel  = temp("out/k_selection.tsv")
+        stats   = f"{OUT}/stats_per_sequence.tsv",
+        muts    = f"{OUT}/mutations_long.tsv",
+        mat     = f"{OUT}/mut_matrix_sparse.npz",
+        sites   = f"{OUT}/mut_matrix_sites.tsv",
+        samp    = f"{OUT}/mut_matrix_samples.tsv",
+        pca     = f"{OUT}/pca_kmeans.tsv",
+        spike   = f"{OUT}/spike_aa_mutations.tsv",
+        metrics = temp(f"{OUT}/kmeans_metrics.tsv")  # optional; script creates it in auto mode
     params:
-        outdir = "out",
-        k      = lambda w, c, p: str(config["pca"]["k"]),
-        kmin   = lambda w, c, p: int(config["pca"]["kmin"]),
-        kmax   = lambda w, c, p: int(config["pca"]["kmax"])
+        outdir   = OUT,
+        k        = lambda wc: str(config["pca"]["k"]),          # e.g. "auto" or "3"
+        kmin     = lambda wc: int(config["pca"]["kmin"]),       # e.g. 2
+        kmax     = lambda wc: int(config["pca"]["kmax"]),       # e.g. 10
+        kselect  = lambda wc: str(config["pca"].get("select", "silhouette"))  # "silhouette", "ch", "db"
     conda:
-        "envs/analyze.yml"   # scikit-learn, biopython, numpy, pandas, scipy
+        "../envs/nextalign.yaml"
     threads: 2
     shell:
         r"""
@@ -33,11 +34,12 @@ rule analyze_genomes:
             --out {params.outdir} \
             --k {params.k} \
             --kmin {params.kmin} \
-            --kmax {params.kmax}
+            --kmax {params.kmax} \
+            --k_select {params.kselect}
 
-        # touch k_selection.tsv only if not created (e.g., fixed k)
-        if [ ! -f {params.outdir}/k_selection.tsv ]; then
-            : > {params.outdir}/k_selection.tsv
+        # Ensure the optional metrics file exists so Snakemake is happy
+        if [ ! -f {params.outdir}/kmeans_metrics.tsv ]; then
+            : > {params.outdir}/kmeans_metrics.tsv
         fi
         """
 
