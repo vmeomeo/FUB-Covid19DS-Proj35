@@ -8,4 +8,5 @@ To run the code (pipeline + notebook) provided here, you can install mamba envir
 ```
 mkdir envs
 mamba create -y -p envs/workshop -f environment_clean.yml
+mamba activate envs/workshop
 ```
