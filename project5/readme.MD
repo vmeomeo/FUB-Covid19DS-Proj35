@@ -21,8 +21,10 @@
 ```
 project3/
 ├── data/
-│   ├── mut_profiles                 # GISAID mutation profiles
-│   └── ref/NC_045512.2.fasta        # auto-downloaded by rule
+│   ├── dms_per_ab_per_site.csv      # provided
+│   ├── PK_for_all_Epitopes.csv      # From other publications
+│   ├── mut_profiles                 # GISAID mutation profiles (will be downloaded by user)
+│   └── input/test_Germany           # Germany genomic surveillance data (provided)
 │
 ├── workflow/
 │   ├── envs/
@@ -37,6 +39,20 @@ project3/
 │   │   └── pca_kmeans_and_risk.py
 │   └── Snakefile
 │
+├── logs/                            # snakemake log files
+│
+├── figures/                         # plots generate in the notebook will be here
+│
 └── out/                             # results land here
 ```
 You can `mkdir <directory_name>` to create the mentioned directory if you haven't had it.
+
+### How to use this repo?
+To download the data, make sure your current working directory is `FUB-Covid19DS-Proj35/project5`.
+
+How to check that? See the path in the terminal, or type `pwd` command. The result should be `{something}/FUB-Covid19DS-Proj35/project5`
+
+Make sure you activate the mamba environment before running (`mamba activate envs/workshop`)
+Then you run `snakemake --cores 4` to download mutation profiles. You can edit the list of lineages at the `config/config.yaml`
+
+After that, you can run the jupyter notebook `workflow/notebook/notebook.ipynb` to analyse the data and create plots.
